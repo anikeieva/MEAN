@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cbfa9e9f-f75f-46b3-ab1b-dcc3abdb0b47" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="fullstack-app" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="ProjectId" id="1fJfwLYAJbSH1nKuPA535gscr4Y" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="javascript.nodejs.core.library.configured.version" value="12.18.3" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path" value="$USER_HOME$/.nvm/versions/node/v12.18.3/bin/node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cbfa9e9f-f75f-46b3-ab1b-dcc3abdb0b47" name="Default Changelist" comment="" />
+      <created>1595941353859</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1595941353859</updated>
+      <workItem from="1595941355023" duration="11093000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="488" y="136" width="1000" height="839" key="#Usage_Scope" timestamp="1595944866155">
+      <screen x="67" y="33" width="1853" height="1047" />
+    </state>
+    <state x="488" y="136" width="1000" height="839" key="#Usage_Scope/67.33.1853.1047@67.33.1853.1047" timestamp="1595944866155" />
+    <state x="723" y="239" width="530" height="633" key="FileChooserDialogImpl" timestamp="1595944825331">
+      <screen x="67" y="33" width="1853" height="1047" />
+    </state>
+    <state x="723" y="239" width="530" height="633" key="FileChooserDialogImpl/67.33.1853.1047@67.33.1853.1047" timestamp="1595944825331" />
+    <state x="359" y="103" key="SettingsEditor" timestamp="1595945294586">
+      <screen x="67" y="33" width="1853" height="1047" />
+    </state>
+    <state x="359" y="103" key="SettingsEditor/67.33.1853.1047@67.33.1853.1047" timestamp="1595945294586" />
+  </component>
+</project>
