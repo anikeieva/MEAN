@@ -3,33 +3,34 @@ const passport = require('passport');
 
 const controller = require('../controllers/category');
 const upload = require('../middleware/upload');
+const passportAuthenticate = require('../utils/passport-authenticate');
 
 const router = express.Router();
 
 router.get(
     '/',
-    passport.authenticate('jwt', { session: false }),
+    passportAuthenticate(passport),
     controller.getAll
 );
 router.get(
     '/:id',
-    passport.authenticate('jwt', { session: false }),
+    passportAuthenticate(passport),
     controller.getById
 );
 router.delete(
     '/:id',
-    passport.authenticate('jwt', { session: false }),
+    passportAuthenticate(passport),
     controller.remove
 );
 router.post(
     '/',
-    passport.authenticate('jwt', { session: false }),
+    passportAuthenticate(passport),
     upload.single('image'),
     controller.create
 );
 router.patch(
     '/:id',
-    passport.authenticate('jwt', { session: false }),
+    passportAuthenticate(passport),
     upload.single('image'),
     controller.update
 );

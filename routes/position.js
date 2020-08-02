@@ -2,27 +2,28 @@ const express = require('express');
 const passport = require('passport');
 
 const authController = require('../controllers/position');
+const passportAuthenticate = require('../utils/passport-authenticate');
 
 const router = express.Router();
 
 router.get(
     '/:categoryId',
-    passport.authenticate('jwt', { session: false }),
+    passportAuthenticate(passport),
     authController.getByCategoryId
 );
 router.post(
     '/',
-    passport.authenticate('jwt', { session: false }),
+    passportAuthenticate(passport),
     authController.create
 );
 router.patch(
     '/:id',
-    passport.authenticate('jwt', { session: false }),
+    passportAuthenticate(passport),
     authController.update
 );
 router.delete(
     '/:id',
-    passport.authenticate('jwt', { session: false }),
+    passportAuthenticate(passport),
     authController.remove
 );
 
