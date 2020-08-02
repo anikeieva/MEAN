@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const codes = require('../data/code-statuses');
 const User = require('../models/User');
 const keys = require('../config/keys');
+const errorHandler = require('../utils/errorHandler');
 
 module.exports.login = async function (req, res) {
     if (req && req.body) {
@@ -52,7 +53,7 @@ function loginUser(req, res, candidate) {
 
         if (token) {
             res.status(codes.SUCCESS_CODE).json({
-                token: `Bear ${token}`
+                token: `Bearer ${token}`
             });
         } else {
             res.status(codes.NOT_FOUND_CODE).json({
@@ -80,10 +81,7 @@ async function registerUser(req, res) {
         await user.save();
 
         res.status(codes.CREATED_CODE).json(user);
-    } catch (error) {
-        console.log(error);
-        res.status(codes.NOT_FOUND_CODE).json({
-            message: 'Something went wrong with database. Try again later'
-        });
+    } catch (err) {
+        errorHandler(res, err);
     }
 }
