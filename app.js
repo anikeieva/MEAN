@@ -32,5 +32,6 @@ app.use('/api/auth', authRouter);
 app.use('/api/category', categoryRouter);
 app.use('/api/order', orderRouter);
 app.use('/api/position', positionRouter);
+app.use('/uploads', express.static('uploads'));
 
 module.exports = app;

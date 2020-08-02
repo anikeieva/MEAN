@@ -17,7 +17,7 @@ module.exports = passport => {
 
 async function newJwtStrategy(payload, done) {
     try {
-        const user = User.findById(payload.id).select('login id');
+        const user = await User.findById(payload.id).select('login id');
 
         if (user) {
             done(null, user);
