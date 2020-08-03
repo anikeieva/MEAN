@@ -1,7 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [];
+import { LoginPageComponent } from "./login-page/login-page.component";
+import { AuthLayoutComponent } from "./shared/layout/auth-layout/auth-layout.component";
+import { SiteLayoutComponent } from "./shared/layout/site-layout/site-layout.component";
+import { RegisterPageComponent } from "./register-page/register-page.component";
+
+const routes: Routes = [
+  { path: '', component: AuthLayoutComponent, children:
+    [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'login', component: LoginPageComponent },
+      { path: 'register', component: RegisterPageComponent }
+    ]
+  },
+  { path: 'overview', component: SiteLayoutComponent, children: [] }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

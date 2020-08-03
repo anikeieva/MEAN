@@ -69,15 +69,15 @@ function loginUser(req, res, candidate) {
 }
 
 async function registerUser(req, res) {
-    const salt = bcrypt.genSaltSync(10);
-    const password = req.body.password;
-
-    const user = new User({
-        login: req.body.login,
-        password: bcrypt.hashSync(password, salt)
-    });
-
     try {
+        const salt = bcrypt.genSaltSync(10);
+        const password = req.body.password;
+
+        const user = new User({
+            login: req.body.login,
+            password: bcrypt.hashSync(password, salt)
+        });
+
         await user.save();
 
         res.status(codes.CREATED_CODE).json(user);
