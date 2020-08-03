@@ -1,0 +1,54 @@
+<form class="card"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()">
+  <div class="card-content">
+    <span class="card-title">
+      Sign in
+    </span>
+    <div class="input-field">
+      <input formControlName="login"
+        id="login"
+        type="email"
+        [ngClass]="{'invalid': login.invalid && login.touched}">
+      <label for="login">
+        Login:
+      </label>
+      <span class="helper-text red-text"
+            *ngIf="login.invalid && login.touched">
+        <span *ngIf="login.errors.required">
+          Email is required
+        </span>
+        <span *ngIf="login.errors.email">
+          Enter correct email
+        </span>
+      </span>
+    </div>
+    <div class="input-field">
+      <input formControlName="password"
+        id="password"
+        type="password"
+        [ngClass]="{'invalid': password.invalid && password.touched}">
+      <label for="password">
+        Password:
+      </label>
+      <span class="helper-text red-text"
+            *ngIf="password.invalid && password.touched">
+        <span *ngIf="password.errors.required">
+          Passport is required
+        </span>
+        <span *ngIf="password.errors.minlength && password.errors.minlength.requiredLength">
+          Passport must be at least {{password.errors.minlength.requiredLength}} characters long.
+          You entered only {{password.errors.minlength.actualLength}}
+        </span>
+      </span>
+    </div>
+  </div>
+  <div class="card-action">
+    <button
+      type="submit"
+      class="modal-action btn waves-effect"
+      [disabled]="form.invalid || form.disabled">
+      Enter
+    </button>
+  </div>
+</form>
