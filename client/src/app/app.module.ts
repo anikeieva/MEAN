@@ -10,6 +10,7 @@ import { AuthLayoutComponent } from './shared/layout/auth-layout/auth-layout.com
 import { SiteLayoutComponent } from './shared/layout/site-layout/site-layout.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { UnsubscribeComponent } from './unsubscriber/unsubscribe.component';
+import { AuthGuard } from './shared/classes/auth.guard';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { UnsubscribeComponent } from './unsubscriber/unsubscribe.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard
+  ],
   bootstrap: [
     AppComponent
   ]
