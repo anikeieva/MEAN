@@ -1,15 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { AuthService } from '../../services/auth.service';
+import { MaterializeService } from '../../classes/materialize.service';
 
 @Component({
   selector: 'app-site-layout',
   templateUrl: './site-layout.component.html',
   styleUrls: ['./site-layout.component.scss']
 })
-export class SiteLayoutComponent implements OnInit {
+export class SiteLayoutComponent implements AfterViewInit {
 
-  constructor() { }
+  @ViewChild('fixedFloatingBtn') floatingBtnRef: ElementRef;
 
-  ngOnInit(): void {
+  menuItems: {
+    url: string,
+    name: string
+  }[] = [
+    { url: '/overview', name: 'Overview' },
+    { url: '/analytics', name: 'Analytics' },
+    { url: '/history', name: 'History' },
+    { url: '/order', name: 'Add order' },
+    { url: '/categories', name: 'Categories' }
+  ];
+
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
+
+  ngAfterViewInit(): void {
+    MaterializeService.initFloatingActionButton(this.floatingBtnRef);
+  }
+
+  logOut(event: Event) {
+    event.preventDefault();
+
+    this.authService.logOut();
+    this.router.navigate(['/login']).then(() => {});
   }
 
 }

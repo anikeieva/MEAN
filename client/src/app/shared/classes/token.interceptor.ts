@@ -10,7 +10,6 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { AuthService } from '../services/auth.service';
-import { codeStatuses } from '../../../../../data/code-statuses.js'
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -21,13 +20,11 @@ export class TokenInterceptor implements HttpInterceptor {
   ) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let updateHeaders = null;
+    let updateHeaders = {};
 
     if (this.authService.iaAuthenticated()) {
-      updateHeaders = {
-        setHeaders: {
+      updateHeaders['setHeaders'] = {
           Authorization: this.authService.getToken()
-        }
       };
     }
 
@@ -39,7 +36,7 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   private handleAuthError(error: HttpErrorResponse): Observable<any> {
-    if (error.status === codeStatuses.UNAUTHORIZED_CODE) {
+    if (error.status === 401) {
       this.router.navigate(['/login'], {
         queryParams: {
           sessionExpired: true

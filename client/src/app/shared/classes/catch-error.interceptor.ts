@@ -10,7 +10,6 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { MaterializeService } from './materialize.service';
-import {codeStatuses} from '../../../../../data/code-statuses';
 
 @Injectable()
 export class CatchErrorInterceptor implements HttpInterceptor {
@@ -22,7 +21,7 @@ export class CatchErrorInterceptor implements HttpInterceptor {
 
     return next.handle(clonedRequest).pipe(
       catchError((error: HttpErrorResponse) => {
-        if (error && error.status !== codeStatuses.UNAUTHORIZED_CODE) {
+        if (error && error.status !== 401) {
           const message = error.error && error.error.message || error.message;
 
           if (message) {

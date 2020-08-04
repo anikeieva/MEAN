@@ -13,6 +13,13 @@ import { UnsubscribeComponent } from './unsubscriber/unsubscribe.component';
 import { AuthGuard } from './shared/classes/auth.guard';
 import { TokenInterceptor } from './shared/classes/token.interceptor';
 import { CatchErrorInterceptor } from './shared/classes/catch-error.interceptor';
+import { OverviewPageComponent } from './overview-page/overview-page.component';
+import { AnalyticsPageComponent } from './analytics-page/analytics-page.component';
+import { HistoryPageComponent } from './history-page/history-page.component';
+import { OrderPageComponent } from './order-page/order-page.component';
+import { CategoriesPageComponent } from './categories-page/categories-page.component';
+import { LoaderComponent } from './shared/components/loader/loader.component';
+import { CategoriesService } from './shared/services/categories.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +28,13 @@ import { CatchErrorInterceptor } from './shared/classes/catch-error.interceptor'
     AuthLayoutComponent,
     SiteLayoutComponent,
     RegisterPageComponent,
-    UnsubscribeComponent
+    UnsubscribeComponent,
+    OverviewPageComponent,
+    AnalyticsPageComponent,
+    HistoryPageComponent,
+    OrderPageComponent,
+    CategoriesPageComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +45,7 @@ import { CatchErrorInterceptor } from './shared/classes/catch-error.interceptor'
   ],
   providers: [
     AuthGuard,
+    CategoriesService,
     {
       provide: HTTP_INTERCEPTORS,
       multi: true,

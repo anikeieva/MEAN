@@ -32,17 +32,7 @@ export class LoginPageComponent extends UnsubscribeComponent implements OnInit {
       password: new FormControl(null, [Validators.required, Validators.minLength(6)])
     });
 
-    this.route.queryParams.subscribe((params: Params) => {
-      let message = '';
-
-      if (params['registered']) {
-        message = 'You are already registered and can log in';
-      } else if (params['accessDenied']) {
-        message = 'Log in first';
-      }
-
-      MaterializeService.toast(message);
-    });
+    this.handleQueryParams();
   }
 
   get login() {
@@ -64,10 +54,29 @@ export class LoginPageComponent extends UnsubscribeComponent implements OnInit {
         () => {
           this.router.navigate(['/overview']).then(() => {});
         },
-        () => {
+        (error) => {
+          console.log(error);
           this.form.enable();
         }
       )
     );
+  }
+
+  private handleQueryParams() {
+    this.route.queryParams.subscribe((params: Params) => {
+      let message = '';
+
+      if (params['registered']) {
+        message = 'You are already registered and can log in';
+      } else if (params['accessDenied']) {
+        message = 'Log in first';
+      } else if (params['sessionExpired']) {
+        message = 'Session was expired. Log in again '
+      }
+
+      if (message) {
+        MaterializeService.toast(message);
+      }
+    });
   }
 }
