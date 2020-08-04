@@ -11,6 +11,7 @@ import { AnalyticsPageComponent } from './analytics-page/analytics-page.componen
 import { HistoryPageComponent } from './history-page/history-page.component';
 import { OrderPageComponent } from './order-page/order-page.component';
 import { CategoriesPageComponent } from './categories-page/categories-page.component';
+import { CategoryFormComponent } from './categories-page/category-form/category-form.component';
 
 const routes: Routes = [
   { path: '', component: AuthLayoutComponent, children:
@@ -26,7 +27,9 @@ const routes: Routes = [
       { path: 'analytics', component: AnalyticsPageComponent },
       { path: 'history', component: HistoryPageComponent },
       { path: 'order', component: OrderPageComponent },
-      { path: 'categories', component: CategoriesPageComponent }
+      { path: 'categories', component: CategoriesPageComponent },
+      { path: 'categories/new', component: CategoryFormComponent },
+      { path: 'categories/:id', component: CategoryFormComponent }
     ]
   }
 ];

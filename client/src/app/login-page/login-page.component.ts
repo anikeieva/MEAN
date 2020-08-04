@@ -27,8 +27,9 @@ export class LoginPageComponent extends UnsubscribeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // TODO: add Validators.email
     this.form = new FormGroup({
-      login: new FormControl(null, [Validators.required, Validators.email]),
+      login: new FormControl(null, [Validators.required]),
       password: new FormControl(null, [Validators.required, Validators.minLength(6)])
     });
 

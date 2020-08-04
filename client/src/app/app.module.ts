@@ -20,6 +20,8 @@ import { OrderPageComponent } from './order-page/order-page.component';
 import { CategoriesPageComponent } from './categories-page/categories-page.component';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { CategoriesService } from './shared/services/categories.service';
+import { CategoryFormComponent } from './categories-page/category-form/category-form.component';
+import { CategoryPositionsComponent } from './categories-page/category-form/category-positions/category-positions.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { CategoriesService } from './shared/services/categories.service';
     HistoryPageComponent,
     OrderPageComponent,
     CategoriesPageComponent,
-    LoaderComponent
+    LoaderComponent,
+    CategoryFormComponent,
+    CategoryPositionsComponent
   ],
   imports: [
     BrowserModule,
