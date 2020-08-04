@@ -5,7 +5,8 @@ import { ActivatedRoute, Params, Router } from "@angular/router";
 
 import { AuthService } from '../shared/services/auth.service';
 import { User } from '../shared/models/user';
-import { UnsubscribeComponent } from "../unsubscriber/unsubscribe.component";
+import { UnsubscribeComponent } from '../unsubscriber/unsubscribe.component';
+import { MaterializeService } from '../shared/classes/materialize.service';
 
 @Component({
   selector: 'app-login-page',
@@ -39,6 +40,8 @@ export class LoginPageComponent extends UnsubscribeComponent implements OnInit {
       } else if (params['accessDenied']) {
         message = 'Log in first';
       }
+
+      MaterializeService.toast(message);
     });
   }
 

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +11,8 @@ import { SiteLayoutComponent } from './shared/layout/site-layout/site-layout.com
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { UnsubscribeComponent } from './unsubscriber/unsubscribe.component';
 import { AuthGuard } from './shared/classes/auth.guard';
+import { TokenInterceptor } from './shared/classes/token.interceptor';
+import { CatchErrorInterceptor } from './shared/classes/catch-error.interceptor';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,17 @@ import { AuthGuard } from './shared/classes/auth.guard';
     HttpClientModule
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: TokenInterceptor
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: CatchErrorInterceptor
+    }
   ],
   bootstrap: [
     AppComponent

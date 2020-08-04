@@ -36,7 +36,9 @@ export class AuthService {
     this.token = token;
 
     if (token) {
-      localStorage.setItem('auth-token', token);
+      if (!localStorage.getItem('auth-token') || localStorage.getItem('auth-token') !== token) {
+        localStorage.setItem('auth-token', token);
+      }
     } else {
       localStorage.clear();
     }
