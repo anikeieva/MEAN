@@ -4,7 +4,8 @@ declare const M: {
   toast: Function,
   FloatingActionButton: {
     init: Function
-  }
+  },
+  updateTextFields: Function
 };
 
 export class MaterializeService {
@@ -16,5 +17,9 @@ export class MaterializeService {
     if (elementRef) {
       M.FloatingActionButton.init(elementRef.nativeElement);
     }
+  }
+
+  static updateTextField() {
+    M.updateTextFields();
   }
 }

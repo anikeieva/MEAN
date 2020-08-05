@@ -37,7 +37,13 @@
     </div>
 
     <div>
+      <input type="file"
+             hidden
+             (change)="onImageUpload($event)"
+             #imageInput>
       <button type="button"
+              (click)="onClickDownloadImage()"
+              [disabled]="form.disabled"
               class="waves-effect waves-light btn orange lighten-2 mb2">
         <i class="material-icons left">
           backup
@@ -56,7 +62,10 @@
   </form>
 
   <div class="col s12 l4 center">
-    <img alt="" class="responsive-img" style="height: 200px" src="cake.jpg">
+    <img alt=""
+         class="responsive-img height-200"
+         *ngIf="imageSrc"
+         [src]="imageSrc">
   </div>
 </div>
 
