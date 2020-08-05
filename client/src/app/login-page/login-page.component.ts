@@ -16,7 +16,6 @@ import { MaterializeService } from '../shared/classes/materialize.service';
 export class LoginPageComponent extends UnsubscribeComponent implements OnInit {
 
   form: FormGroup;
-  subscriptions: Subscription[] = [];
 
   constructor(
     private authService: AuthService,
@@ -27,13 +26,14 @@ export class LoginPageComponent extends UnsubscribeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // TODO: add Validators.email
     this.form = new FormGroup({
-      login: new FormControl(null, [Validators.required]),
+      login: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required, Validators.minLength(6)])
     });
 
-    this.handleQueryParams();
+    this.subscriptions.push(
+      this.handleQueryParams()
+    );
   }
 
   get login() {
@@ -63,8 +63,8 @@ export class LoginPageComponent extends UnsubscribeComponent implements OnInit {
     );
   }
 
-  private handleQueryParams() {
-    this.route.queryParams.subscribe((params: Params) => {
+  private handleQueryParams(): Subscription {
+    return this.route.queryParams.subscribe((params: Params) => {
       let message = '';
 
       if (params['registered']) {

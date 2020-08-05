@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {Category} from '../models/category';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+import { Category } from '../models/category';
+import { Message } from '../models/message';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +32,10 @@ export class CategoriesService {
     const formData: FormData = CategoriesService.getCategoryFormData(name, image);
 
     return this.http.patch<Category>(`${this.requestPath}/${id}`, formData);
+  }
+
+  remove(id: string): Observable<Message> {
+    return this.http.delete<Message>(`${this.requestPath}/${id}`);
   }
 
   private static getCategoryFormData(name: string, image?: File): FormData {

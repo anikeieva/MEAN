@@ -1,20 +1,22 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { switchMap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 
 import { CategoriesService } from '../../shared/services/categories.service';
 import { Category } from '../../shared/models/category';
 import { MaterializeService } from '../../shared/classes/materialize.service';
 import { HTMLInputEvent } from '../../shared/models/HTMLInputEvent';
+import { Message } from '../../shared/models/message';
+import { UnsubscribeComponent } from '../../unsubscriber/unsubscribe.component';
 
 @Component({
   selector: 'app-category-form',
   templateUrl: './category-form.component.html',
   styleUrls: ['./category-form.component.scss']
 })
-export class CategoryFormComponent implements OnInit {
+export class CategoryFormComponent extends UnsubscribeComponent implements OnInit {
 
   isNewCategory = true;
   form: FormGroup;
@@ -27,15 +29,20 @@ export class CategoryFormComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private categoriesService: CategoriesService
-  ) { }
+    private categoriesService: CategoriesService,
+    private router: Router
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
     this.form = new FormGroup({
       name: new FormControl(null, [Validators.required])
     });
 
-    this.handleQueryParams();
+    this.subscriptions.push(
+      this.handleQueryParams()
+    );
   }
 
   get name() {
@@ -54,17 +61,19 @@ export class CategoryFormComponent implements OnInit {
         submitCategory$ = this.categoriesService.update(this.category._id, this.form.value.name, this.image);
       }
 
-      submitCategory$.subscribe(
-        (category: Category) => {
-          const action = this.isNewCategory ? 'added' : 'edited';
-          this.category = category;
+      this.subscriptions.push(
+        submitCategory$.subscribe(
+          (category: Category) => {
+            const action = this.isNewCategory ? 'added' : 'edited';
+            this.category = category;
 
-          this.form.enable();
-          MaterializeService.toast(`Category was successfully ${action}`);
-        },
-        () => {
-          this.form.enable();
-        }
+            this.form.enable();
+            MaterializeService.toast(`Category was successfully ${action}`);
+          },
+          () => {
+            this.form.enable();
+          }
+        )
       );
     }
   }
@@ -92,10 +101,27 @@ export class CategoryFormComponent implements OnInit {
     }
   }
 
-  private handleQueryParams() {
+  removeCategory() {
+    if (!this.isNewCategory && this.category) {
+      const confirm = window.confirm('Are you sure you want to delete category');
+
+      if (confirm) {
+        this.subscriptions.push(
+          this.categoriesService.remove(this.category._id)
+            .subscribe(
+              (message: Message) => MaterializeService.toast(message.message),
+              () => {},
+              () => this.router.navigate(['/categories'])
+            )
+        );
+      }
+    }
+  }
+
+  private handleQueryParams(): Subscription {
     this.form.disable();
 
-    this.route.params
+    return this.route.params
       .pipe(
         switchMap(
           (params: Params) => {
