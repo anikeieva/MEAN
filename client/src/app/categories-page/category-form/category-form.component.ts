@@ -6,7 +6,7 @@ import { Observable, of, Subscription } from 'rxjs';
 
 import { CategoriesService } from '../../shared/services/categories.service';
 import { Category } from '../../shared/models/category';
-import { MaterializeService } from '../../shared/classes/materialize.service';
+import { MaterializeService } from '../../shared/services/materialize.service';
 import { HTMLInputEvent } from '../../shared/models/HTMLInputEvent';
 import { Message } from '../../shared/models/message';
 import { UnsubscribeComponent } from '../../unsubscriber/unsubscribe.component';
@@ -21,9 +21,9 @@ export class CategoryFormComponent extends UnsubscribeComponent implements OnIni
   isNewCategory = true;
   form: FormGroup;
   imageSrc: String | ArrayBuffer = '';
+  category: Category;
 
   private image: File;
-  private category: Category;
 
   @ViewChild('imageInput') imageInputRef: ElementRef;
 

@@ -22,6 +22,7 @@ import { LoaderComponent } from './shared/components/loader/loader.component';
 import { CategoriesService } from './shared/services/categories.service';
 import { CategoryFormComponent } from './categories-page/category-form/category-form.component';
 import { CategoryPositionsComponent } from './categories-page/category-form/category-positions/category-positions.component';
+import { PositionsService } from './shared/services/positions.service';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { CategoryPositionsComponent } from './categories-page/category-form/cate
   providers: [
     AuthGuard,
     CategoriesService,
+    PositionsService,
     {
       provide: HTTP_INTERCEPTORS,
       multi: true,

@@ -9,7 +9,7 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { MaterializeService } from './materialize.service';
+import { MaterializeService } from '../services/materialize.service';
 
 @Injectable()
 export class CatchErrorInterceptor implements HttpInterceptor {

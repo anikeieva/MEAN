@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
-import { MaterializeService } from '../../classes/materialize.service';
+import { MaterializeService } from '../../services/materialize.service';
 
 @Component({
   selector: 'app-site-layout',

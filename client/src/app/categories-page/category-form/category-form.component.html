@@ -71,4 +71,6 @@
   </div>
 </div>
 
-<app-category-positions></app-category-positions>
+<app-category-positions *ngIf="category?._id"
+                        [categoryId]="category?._id">
+</app-category-positions>
